@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html lang="en"> 
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+        <title>Raphaël · Graffle</title> 
+        <link rel="stylesheet" href="demo.css" type="text/css" media="screen"> 
+        <link rel="stylesheet" href="demo-print.css" type="text/css" media="print"> 
+        <script src="raphael.js" type="text/javascript" charset="utf-8"></script> 
+        <script src="http://code.jquery.com/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script> 
+
+        <script type="text/javascript" charset="utf-8">
+        
+        
+        
+        
+        
+
+
+var el, paper;
+window.onload = function () {
+
+
+
+
+
+
+// Each of the following examples create a canvas that is 320px wide by 200px high
+// Canvas is created at the viewport’s 10,50 coordinate
+
+// Canvas is created at the top left corner of the #notepad element
+// (or its top right corner in dir="rtl" elements)
+paper = Raphael(document.getElementById("holder"), 320, 200);
+// Same as above
+
+   //var c = Raphael.colorwheel(40, 40, 50, 50, 'holder');
+   var c = Raphael.textInput(40, 40, 200, 50, 'holder');			
+};
+        
+        
+        
+        
+   (function (Raphael) {
+    Raphael.textInput = function (x, y, size, initcolor, element) {
+        return new TextInput(x, y, size, initcolor, element);
+    };
+    var pi = Math.PI;
+    function angle(x, y) {
+        return (x < 0) * 180 + Math.atan(-y / -x) * 180 / pi;
+    }
+    var doc = document, win = window;
+    var addEvent = (function () {
+        if (doc.addEventListener) {
+            return function (obj, type, fn, element) {
+                var f = function (e) {
+                    return fn.call(element, e);
+                };
+                obj.addEventListener(type, f, false);
+                return function () {
+                    obj.removeEventListener(type, f, false);
+                    return true;
+                };
+            };
+        } else if (doc.attachEvent) {
+            return function (obj, type, fn, element) {
+                var f = function (e) {
+                    return fn.call(element, e || win.event);
+                };
+                obj.attachEvent("on" + type, f);
+                var detacher = function () {
+                    obj.detachEvent("on" + type, f);
+                    return true;
+                };
+                return detacher;
+            };
+        }
+    })();
+    var TextInput = function (x, y, size, initcolor, element) {
+        size = size || 200;
+
+        var outer = paper.rect(15, 15, 200, 30).attr({
+            stroke: "none",
+            fill: "#FFF",
+												stroke: "#000",
+            opacity: 1
+        });
+
+        var inner = paper.rect(20, 18, 180, 22).attr({
+            stroke: "none",
+            fill: "#EEE",
+												stroke: "#000",
+            opacity: 1
+        });
+
+
+    };
+
+})(window.Raphael);
+        
+        
+        
+        
+        
+        
+        
+        </script> 
+        <style type="text/css" media="screen"> 
+            #holder {
+                -moz-border-radius: 10px;
+                -webkit-border-radius: 10px;
+                border: solid 1px #333;
+            }
+            p {
+                text-align: center;
+            }
+        </style> 
+    </head> 
+    <body> 
+        <p>Drag shapes around.</p> 
+        <div id="holder"></div> 
+        <p id="copy">Demo of <a href="http://raphaeljs.com/">Raphaël</a>—JavaScript Vector Library</p> 
+    </body> 
+</html> 
